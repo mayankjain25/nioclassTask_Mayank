@@ -5,6 +5,7 @@ function App() {
   const [userName, setUserName] = useState('')
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
+  const [isTestStarted, setIsTestStarted] = useState(false);
 
   const questionIDs = [
     'AreaUnderTheCurve_21',
@@ -16,6 +17,7 @@ function App() {
     'BinomialTheorem_4',
     'AreaUnderTheCurve_5',
   ];
+
   useEffect(() => {
     const calculatedTotalTime = selectedQuestions.length * 5; // 5 minutes per question
     setTotalTime(calculatedTotalTime);
@@ -79,8 +81,6 @@ function App() {
         <p>Total Time for the Test: {totalTime} minutes</p>
       <button onClick={handleStartTest}>Start Test</button>
       </div>
-
-      
     </div>
   )
 }
