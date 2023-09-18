@@ -50,7 +50,7 @@ const FinishPage = () => {
         <hr></hr>
         <div>
           <h4>Here's a quick summary for you</h4>
-          <div className='background' style={{height:'40vh', alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
+          <div className='background' style={{height:'60vh', alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column'}}>
             <div style={{marginTop: '20px'}}>
                 <h6>Questions attempted: {totalQuestionsAttempted}</h6>
                 <hr style={{width:'100px', margin:'auto', marginBottom: '10px'}}></hr>
