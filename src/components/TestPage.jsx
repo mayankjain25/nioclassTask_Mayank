@@ -3,7 +3,11 @@ import {MathJaxContext} from 'better-react-mathjax'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom'
+import { HashLoader } from 'react-spinners'
+import './styles/Landing.css'
+
 import Carousel from 'react-bootstrap/Carousel';
+import Footer from './Footer'
 
 const TestPage = () => {
   // const [questions, setQuestions] = useState([])
@@ -14,6 +18,8 @@ const TestPage = () => {
   const [questionTimers, setQuestionTimers] = useState(new Array(questions.length).fill(0));
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [carouselIndex, setCarouselIndex] = useState(0);
+  const [loading, setLoading] = useState(false)
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -103,7 +109,7 @@ const TestPage = () => {
 
     setTimeout(()=>{
       setLoading(false)
-      navigate('/finish', {state: {name: data.name, timeTakenToSubmit: timeTakenToSubmit, totalTime: data.totalTime * 60, questionTimers: questionTimers}})
+      navigate('/finish', {state: {name: data.name, timeTakenToSubmit: timeTakenToSubmit, totalTime: data.totalTime * 60, questionTimers: questionTimers, selectedQuestions: data.selectedQuestions}})
     },1000)
 
 
@@ -111,17 +117,23 @@ const TestPage = () => {
   return (
     <MathJaxContext config={config}>
 
-      <div>
-        Hi, {data.name}!
+      <div className='background' style={{height:'80vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+        <div>
+          
+        Hi, {data.name}, your test has now started!
 
-        <p>Time Remaining: <span className={isTimeLessThanOneMinute ? 'blink' : ''}>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span></p>
+        <p style={{textDecoration: 'underline'}}>Time Remaining: <span className={isTimeLessThanOneMinute ? 'blink' : ''}>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</span></p>
+        </div>
+
+
+
+          
       
-      
-            <Carousel interval={null} data-bs-theme="dark" activeIndex={carouselIndex} // Set activeIndex to control the Carousel
+            <Carousel controls={false} indicators={false} interval={null} data-bs-theme="dark" activeIndex={carouselIndex} // Set activeIndex to control the Carousel
           onSelect={handleCarouselSelect} >
-              {data?.questions?.map((question)=>{
-                return <Carousel.Item>
-
+              {data?.questions?.map((question, index)=>{
+                return <Carousel.Item style={{textAlign:'left'}}>
+                  <h6 style={{fontWeight: 'bold'}}>Question {index+1}</h6>
                   <MathJax>{question}</MathJax>
                 </Carousel.Item> 
               })}
@@ -129,20 +141,25 @@ const TestPage = () => {
             </Carousel>
 
             <div>
-          <button onClick={goToPreviousQuestion} data-slide="prev" disabled={currentQuestionIndex === 0}>
+          <button onClick={goToPreviousQuestion} style={{marginTop:'20px', marginRight: '20px'}}  disabled={currentQuestionIndex === 0}>
             Previous Question
           </button>
-          <button onClick={goToNextQuestion} data-slide="next" disabled={currentQuestionIndex === questions.length - 1}>
+          <button onClick={goToNextQuestion} disabled={currentQuestionIndex === questions.length - 1}>
             Next Question
           </button>
         </div>
         <div>
-        <p>Time Spent on Current Question: {formatTime(questionTimers[currentQuestionIndex])}</p>
+        <p style={{marginTop: '20px'}}>Time Spent on Current Question: {formatTime(questionTimers[currentQuestionIndex])}</p>
       </div>
           
-          <button onClick={handleSubmitTest} disabled={timer==0}>Submit Test</button>
+          <button onClick={handleSubmitTest} style={{width: '300px', display: 'flex', alignItems: 'center', justifyContent: 'center'}} disabled={timer==0}>Submit Test
+          <span style={{marginLeft:'20px'}}>
+            <HashLoader color={'rgb(183, 176, 176)'} loading={loading} size={20} />
+          </span>
+          </button>
         
       </div>
+      <Footer />
     </MathJaxContext>
   
   )

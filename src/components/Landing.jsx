@@ -4,6 +4,8 @@ import { useAppContext } from '../context'
 import { useNavigate } from 'react-router-dom'
 import { MathJax } from 'better-react-mathjax'
 import { HashLoader } from 'react-spinners'
+import Footer from './Footer'
+import './styles/Landing.css'
 
 const Landing = () => {
   const [userName, setUserName] = useState('')
@@ -89,20 +91,21 @@ const Landing = () => {
     }
   };
   return (
+    <div className='background' style={{overflow:'hidden', height:'80vh',fontFamily: 'Nunito Sans, sans-serif', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+
     <div>
 
-    <div style={{display: 'flex'}}>
-
-      <h2>Enter your name</h2>
+      <h4>Enter your name</h4>
       <input
         type="text"
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
+        // style={{marginLeft: '20px'}}
         ></input>
     </div>
 
     <div style={{display:'flex', flexDirection: 'column'}}>
-      <p>Select Questions:</p>
+      <p style={{marginTop:'10px'}}>Select Questions:</p>
       <div>
         {questionIDs.map((questionID) => (
           <label key={questionID} style={{display: 'flex', alignItems: 'center'}}>
@@ -118,11 +121,17 @@ const Landing = () => {
         ))}
       </div>
 
-      <p>Total Time for the Test: {totalTime} minutes</p>
-    <button onClick={handleStartTest}>Start Test <span>
-        <HashLoader color={'#000'} loading={loading} size={20} />
-        </span></button>
+      <p style={{marginTop:'10px'}}>Total Time for the Test:<span style={{fontWeight: 'bold'}}> {totalTime} minutes</span> </p>
+    <button onClick={handleStartTest}>
+        Start Test
+        <span style={{marginLeft: '20px'}}>
+        <HashLoader color={'rgb(183, 176, 176)'} loading={loading} size={20} />
+            
+        </span>
+    </button>
     </div>
+
+    <Footer />
 
   </div>
   )

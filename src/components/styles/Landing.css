@@ -1,0 +1,38 @@
+.background{
+    background-color: #d9e4f5;
+    background-image: linear-gradient(315deg, #d9e4f5 0%, #f5e3e6 74%);
+    overflow-y:hidden;
+    overflow: hidden;
+    border-radius: 10px;
+    /* font-family: 'Cedarville Cursive', cursive; */
+font-family: 'Nunito Sans', sans-serif;
+
+}
+
+button{
+    outline:none;
+    border:none;
+    border-radius:10px;
+    transition: 0.5s;
+    border: 1px solid rgb(183, 176, 176);
+    
+}
+
+button:disabled{
+    background-color: rgb(220,227,243);
+    border: 1px solid rgb(191, 197, 210);
+    color: rgb(191, 197, 210);
+    cursor: not-allowed;
+}
+
+button:hover{
+
+    background-color: rgb(220,227,243);
+    border: 1px solid rgb(191, 197, 210);
+    /* font-weight: bold; */
+
+}
+
+.submit-btn{
+    color:'green'
+}
