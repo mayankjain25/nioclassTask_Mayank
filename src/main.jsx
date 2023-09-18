@@ -5,6 +5,8 @@ import './index.css'
 import {AppProvider} from './context.jsx'
 // import { MathJaxContext } from 'better-react-mathjax'
 import Landing from './components/Landing.jsx'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import FinishPage from './components/FinishPage.jsx'
 
 import {
   createBrowserRouter,
@@ -20,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: '/test',
     element: <TestPage />
+  },
+  {
+    path: "/finish",
+    element: <FinishPage />
   }
 ]);
 
