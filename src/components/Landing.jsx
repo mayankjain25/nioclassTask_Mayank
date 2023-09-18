@@ -12,17 +12,10 @@ const Landing = () => {
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
   const [isTestStarted, setIsTestStarted] = useState(false);
-//   const [questions, setQuestions] = useState([])
     const questions = []
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
 
-    // const { userData, setUserData } = useAppContext();
-
-    // const startTest = (userName, selectedQs, testTime) => {
-    //     // Update the global state using the setUserData function
-    //     setUserData({ name: userName, selectedQuestions: selectedQs, totalTime: testTime });
-    //   };
 
   const questionIDs = [
     'AreaUnderTheCurve_21',
@@ -62,8 +55,6 @@ const Landing = () => {
     receiveQuestion = await receiveQuestion.json()
     // console.log(String.raw`${receiveQuestion[0].Question}`)
     questions.push(receiveQuestion[0].Question)
-    // setQuestions([...questions, receiveQuestion[0].Question])
-    // console.log(receiveQuestion[0].Question)
   }
 
   const handleStartTest = async () => {
@@ -71,7 +62,7 @@ const Landing = () => {
       // Calculate total time based on the number of selected questions
       const calculatedTotalTime = selectedQuestions.length * 5; // 5 minutes per question
       setTotalTime(calculatedTotalTime);
-    //   setUserData({ name: userName, selectedQuestions: selectedQuestions, totalTime: totalTime });
+
     setLoading(true)
 
     

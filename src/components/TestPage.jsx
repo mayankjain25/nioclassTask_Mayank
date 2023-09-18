@@ -26,7 +26,7 @@ const TestPage = () => {
     const interval = setInterval(() => {
       if (timer > 0) {
         setTimer(timer - 1);
-        // Increment time spent on the current question
+       
         const updatedTimers = [...questionTimers];
         updatedTimers[currentQuestionIndex]++;
         setQuestionTimers(updatedTimers);
@@ -35,7 +35,7 @@ const TestPage = () => {
       }
     }, 1000);
     
-    // Update the timer every second
+    
 
     if(timer==0){
       handleSubmitTest()
@@ -53,7 +53,7 @@ const TestPage = () => {
     setCarouselIndex(carouselIndex + 1);
   };
 
-  // Function to navigate to the previous question
+  
   const goToPreviousQuestion = () => {
     setCurrentQuestionIndex((prevIndex) => Math.max(prevIndex - 1, 0));
     setCarouselIndex(carouselIndex - 1);

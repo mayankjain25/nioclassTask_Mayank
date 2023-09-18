@@ -42,7 +42,7 @@ const FinishPage = () => {
         return formattedTime;
       }
 
-    console.log(data)
+   
   return (
     <div>
 
